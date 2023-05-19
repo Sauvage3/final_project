@@ -1,0 +1,88 @@
+great plan v0:
+
+game of life:
+base rules:
+
+if a dead cell at generation is surrounded exactly by 3 alive cells then it willl be alive at generation if an alive cell at generation is surrounded by  2 or 3 alive cells, then it will stay alive, otherwise it will become a dead cell at generation 
+
+current planned variations:
+
+https://en.wikipedia.org/wiki/Wireworld
+
+
+https://en.wikipedia.org/wiki/Cyclic_cellular_automaton(maybe)
+
+
+The Rainbow Game of Life
+Non-Square Grid Shapes
+https://en.wikipedia.org/wiki/Rule_30
+https://en.wikipedia.org/wiki/Highlife
+https://ccl.northwestern.edu/netlogo/models/Fire
+
+tsunami model
+
+features:
+input pattern at start
+input rules at start / select scenario at start
+zoom in/out(esp. at start)(max limit)
+alive vs dead cell counter
+select colors
+select speed of simulation
+
+
+
+
+
+
+
+
+
+needed classes:
+cells
+grid
+start screen?
+
+
+
+
+
+
+
+
+
+
+
+needed methods:
+
+
+
+
+
+
+
+
+
+
+
+rules to change:
+
+
+
+needed by monday:
+
+document thing
+grid 
+- with changing cell sizes
+-maybe zoom????
+
+game of life that works
+
+with input cells
+
+select colors
+
+select spped
+
+at least 
+
+
