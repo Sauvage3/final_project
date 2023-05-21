@@ -51,9 +51,15 @@ void setup(){
   strokeWeight(4);
   stroke(#080202);
   worker.gridIniator(40);
+<<<<<<< HEAD
   
   worker.displayGrid();
   test1.test3();
+=======
+ // color[][] test = worker.gridDuplicator();
+  worker.displayGrid();
+  //test1.test3();
+>>>>>>> daniele20
 }
 
 void keyPressed(){
