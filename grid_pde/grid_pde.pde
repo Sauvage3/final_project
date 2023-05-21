@@ -51,7 +51,7 @@ void setup(){
   strokeWeight(4);
   stroke(#080202);
   worker.gridIniator(40);
-  color[][] test = worker.gridDuplicator();
+  
   worker.displayGrid();
   test1.test3();
 }
