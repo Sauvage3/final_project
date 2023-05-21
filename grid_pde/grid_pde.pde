@@ -7,7 +7,7 @@ int size;
   public void gridIniator(int desiredSize){
     size = desiredSize; 
     int squareWidth = width * 3 / size;
-    int squareHeight = height * 3/size;
+    int squareHeight = height * 3 / size;
    
     grid = new color[squareHeight][squareWidth];
     for(int r = 0; r < squareHeight; r++){
@@ -54,6 +54,18 @@ void setup(){
   color[][] test = worker.gridDuplicator();
   worker.displayGrid();
   test1.test3();
+}
+
+void keyPressed(){
+ gridAdjustifier worker = new gridAdjustifier();
+ if (key == '+'){
+   size = size + 10;
+   worker.displayGrid();
+ }
+ if (key == '-'){
+   size = size - 10;
+   worker.displayGrid();
+ }
 }
 
 void draw(){
