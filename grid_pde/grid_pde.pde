@@ -3,11 +3,11 @@ int size;
 
 
 
-public class gridAdjustifier{
+ public class gridAdjustifier{
   public void gridIniator(int desiredSize){
-    size= desiredSize; 
+    size = desiredSize; 
     int squareWidth = width * 3 / size;
-    int squareHeight = height * 3/size;
+    int squareHeight = height * 3 / size;
    
     grid = new color[squareHeight][squareWidth];
     for(int r = 0; r < squareHeight; r++){
@@ -38,23 +38,42 @@ public class gridAdjustifier{
       }
     }
   }
-}
+  
+  
+ }
+
   
 void setup(){
   gridAdjustifier worker = new gridAdjustifier();
+  gameOfLife test1 = new gameOfLife();
+  
   fullScreen();
   strokeWeight(4);
   stroke(#080202);
   worker.gridIniator(40);
+ // color[][] test = worker.gridDuplicator();
   worker.displayGrid();
+  //test1.test3();
+}
+
+void keyPressed(){
+ gridAdjustifier worker = new gridAdjustifier();
+ if (key == '+'){
+   size = size + 10;
+   worker.displayGrid();
+ }
+ if (key == '-'){
+   size = size - 10;
+   worker.displayGrid();
+ }
 }
 
 void draw(){
-  gridAdjustifier worker = new gridAdjustifier();
-  worker.displayGrid();
+  //gridAdjustifier worker = new gridAdjustifier();
+  //worker.displayGrid();
 }
 
-void mouseClicked(){
-  gridAdjustifier worker = new gridAdjustifier();
-  worker.gridModifierOnClick(mouseX, mouseY);
-}
+//void mouseClicked(){
+//  gridAdjustifier worker = new gridAdjustifier();
+//  worker.gridModifierOnClick(mouseX, mouseY);
+//}
