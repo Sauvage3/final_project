@@ -1,7 +1,3 @@
-
-
-
-
 public class gameOfLife{
   color aliveColor =  color(#17BC20);
   color deadColor =  color(#AD1A1A);
