@@ -13,7 +13,8 @@ public class gameOfLife{
         oldGrid[r][c] = grid[r][c];
       }
     }
-    return saveOldGrid();
+    return oldGrid;
+
   }
   
   public int numOfLiveNeighbors(int row, int column){
@@ -36,8 +37,8 @@ public class gameOfLife{
       viableColumns = 2;
     }
     int aliveCount  = 0;
-    for(int r = startPosY; r++ < startPosY + viableRows; r++){
-      for(int c = startPosX; c++ < startPosX + viableColumns; c++){
+    for(int r = startPosY; r < startPosY + viableRows; r++){
+      for(int c = startPosX; c < startPosX + viableColumns; c++){
         if(grid[r][c] == aliveColor){
           aliveCount++;
         }
@@ -66,7 +67,22 @@ public class gameOfLife{
       }
     }
   }
+  
+  public void initalizeGridForGame(){
+    for(int r = 0; r < grid.length; r++){
+      for(int c = 0; c<grid[0].length; c++){
+        if(random(0,1) <= percentStartingAlive){
+          grid[r][c] = aliveColor;
+        }
+         else{
+           grid[r][c] = deadColor;
+         }
+        }
+      }
+    
         
 }
+}
+
 
   

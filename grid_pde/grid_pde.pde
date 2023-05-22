@@ -1,5 +1,7 @@
 color[][] grid;
 int size;
+float percentStartingAlive = 0.1;
+
 
 
 
@@ -51,6 +53,7 @@ void setup(){
   strokeWeight(4);
   stroke(#080202);
   worker.gridIniator(40);
+  test1.initalizeGridForGame();
  // color[][] test = worker.gridDuplicator();
   worker.displayGrid();
   //test1.test3();
@@ -59,18 +62,24 @@ void setup(){
 void keyPressed(){
  gridAdjustifier worker = new gridAdjustifier();
  if (key == '+'){
+   println("triggered");
    size = size + 10;
    worker.displayGrid();
  }
  if (key == '-'){
+   println("triggered");
    size = size - 10;
    worker.displayGrid();
  }
 }
 
 void draw(){
-  //gridAdjustifier worker = new gridAdjustifier();
-  //worker.displayGrid();
+  gameOfLife test2 = new gameOfLife();
+  gridAdjustifier worker = new gridAdjustifier();
+  if(frameCount % 10 == 0){
+  test2.runGeneration();
+  worker.displayGrid();
+  }
 }
 
 //void mouseClicked(){
