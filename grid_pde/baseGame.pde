@@ -40,7 +40,9 @@ public class gameOfLife{
     int aliveCount  = 0;
     for(int r = startPosY; r < startPosY + viableRows; r++){
       for(int c = startPosX; c < startPosX + viableColumns; c++){
-        if(grid[r][c] == aliveColor){
+        if(r == row && c == column){
+        }
+        else if(grid[r][c] == aliveColor){
           aliveCount++;
         }
       }

@@ -1,6 +1,6 @@
 color[][] grid;
 int size;
-float percentStartingAlive = 0.1;
+float percentStartingAlive = 0.3;
 int maxSize = 10;
 //multiple of sreen size grid created too
 
