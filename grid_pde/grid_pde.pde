@@ -1,7 +1,9 @@
 color[][] grid;
 int size;
-float percentStartingAlive = 0.3;
+float percentStartingAlive = 0.1;
 int maxSize = 10;
+int x = 0;
+int y = 0;
 //multiple of sreen size grid created too
 
 
@@ -13,7 +15,6 @@ int maxSize = 10;
     size = desiredSize; 
     int squareWidth = width * maxSize / size;
     int squareHeight = height * maxSize / size;
-   
     grid = new color[squareHeight][squareWidth];
     for(int r = 0; r < squareHeight; r++){
       for(int c  = 0; c < squareWidth;c++){
@@ -21,24 +22,11 @@ int maxSize = 10;
       }
     }
   }
-    
-  
-  public void gridModifierOnClick(int x, int y){
-    println(x);
-    println(y);
-    println("triggered");
-    int r = y / size;
-    int c = x / size;
-    println(r);
-    println(c);
-    grid[r][c] = color(#C10A0A);
-  }
   
   public void displayGrid(){
     for(int r  = 0; r < height  / size;r++){
       for(int c = 0; c < width  / size;c++){
-       
-        fill(grid[r][c]);
+        fill(grid[(r + x + 2700)%270][(c + y + 4800)%480]);
         square(c * size, r * size, size);
       }
     }
@@ -65,15 +53,31 @@ void setup(){
 
 void keyPressed(){
  gridAdjustifier worker = new gridAdjustifier();
- if (key == '+'){
+ if (key == '='){
    println("triggered");
    size = size + 10;
    worker.displayGrid();
  }
- if (key == '-'){
+ if (key == '-' && size > 10){
    println("triggered");
    size = size - 10;
    worker.displayGrid();
+ }
+ if (key == 'w') {
+  x = x - 5;
+  worker.displayGrid();
+ }
+ if (key == 'a') {
+  y = y - 5;
+  worker.displayGrid();
+ }
+ if (key == 's') {
+  x = x + 5;
+  worker.displayGrid();
+ }
+ if (key == 'd') {
+  y = y + 5;
+  worker.displayGrid();
  }
 }
 
