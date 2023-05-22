@@ -22,24 +22,7 @@ public class gameOfLife{
     int startPosX = column - 1;
     int viableRows = 3;
     int viableColumns = 3;
-<<<<<<< HEAD
-    if(row !> 1){
-      startPosY = row;
-      viableRows = 2;
-    }
-    if(column !> 1){
-      startPosX = column;
-      viableColumns = 2;
-    }
-    if(row <= grid.length){
-      
-  public void runGeneration(){
-    color[][] lastGenGrid = saveOldGrid();
-    for(int r = 0; r < r.grid.length; r++){
-      for(int c = 0; c<grid[0].length; c++){
-        
-}
-=======
+
     if(row < 1){
       startPosY = row;
       viableRows = 2;
@@ -104,4 +87,3 @@ public class gameOfLife{
 
 
   
->>>>>>> daniele20

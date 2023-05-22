@@ -53,19 +53,11 @@ void setup(){
   strokeWeight(4);
   stroke(#080202);
   worker.gridIniator(40);
-<<<<<<< HEAD
-<<<<<<< HEAD
-  
-  worker.displayGrid();
-  test1.test3();
-=======
-=======
+
   test1.initalizeGridForGame();
->>>>>>> daniele20
- // color[][] test = worker.gridDuplicator();
+
   worker.displayGrid();
-  //test1.test3();
->>>>>>> daniele20
+ 
 }
 
 void keyPressed(){
