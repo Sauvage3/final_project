@@ -1,6 +1,9 @@
 color[][] grid;
 int size;
 float percentStartingAlive = 0.1;
+int maxSize = 10;
+//multiple of sreen size grid created too
+
 
 
 
@@ -8,8 +11,8 @@ float percentStartingAlive = 0.1;
  public class gridAdjustifier{
   public void gridIniator(int desiredSize){
     size = desiredSize; 
-    int squareWidth = width * 3 / size;
-    int squareHeight = height * 3 / size;
+    int squareWidth = width * maxSize / size;
+    int squareHeight = height * maxSize / size;
    
     grid = new color[squareHeight][squareWidth];
     for(int r = 0; r < squareHeight; r++){
