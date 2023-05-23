@@ -64,12 +64,6 @@ public class gameOfWireworld extends baseGame{
   }
   
   public void initalizeGridForGame(){
-    for(int r = 0; r < grid.length; r++){
-      for(int c = 0; c<grid[0].length; c++){
-        grid[r][c] = emptyColor;
-    
-        
+    super.initalizeEmptyGrid();
 }
-}
-  }
 }
