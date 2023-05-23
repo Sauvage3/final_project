@@ -1,20 +1,10 @@
-public class gameOfWireworld{
+public class gameOfWireworld extends baseGame{
   color emptyColor = color(#000000);
   color electronHeadColor = color(#1421FC);
   color electronTailColor = color(#FC2814);
   color conductor = color(#FCF114);
   
-  public int[][] saveOldGrid(){
-    color[][] oldGrid = new color[grid.length][grid[0].length];
-    for(int r = 0; r< grid.length;r++){
-      for(int c = 0; c < grid[0].length; c++){
-        oldGrid[r][c] = grid[r][c];
-      }
-    }
-    return oldGrid;
 
-  }
-  
   public int numOfElectronHeadNeighbors(int row, int column){
     int startPosY = row - 1;
     int startPosX = column - 1;
