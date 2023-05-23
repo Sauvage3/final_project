@@ -38,12 +38,15 @@ public class gameOfWireworld{
     int electronHeadCount  = 0;
     for(int r = startPosY; r < startPosY + viableRows; r++){
       for(int c = startPosX; c < startPosX + viableColumns; c++){
-        if(grid[r][c] == aliveColor){
-          aliveCount++;
+        if(r == row && c == column){
+        }
+        
+        else if(grid[r][c] == electronHeadColor){
+          electronHeadCount++;
         }
       }
     }
-    return aliveCount;
+    return electronHeadCount;
   }
       
       
@@ -53,15 +56,18 @@ public class gameOfWireworld{
     color[][] lastGenGrid = saveOldGrid();
     for(int r = 0; r < grid.length; r++){
       for(int c = 0; c<grid[0].length; c++){
-        int aliveCells = numOfLiveNeighbors(r,c);
-        if(lastGenGrid[r][c] == deadColor){
-          if(aliveCells == 3){
-            grid[r][c] = aliveColor;
-          }
+        int electronHeadNeighbors = numOfElectronHeadNeighbors(r,c);
+        if(lastGenGrid[r][c] == emptyColor){
         }
-        else if(aliveCells < 2 || aliveCells > 3){
-          grid[r][c] = deadColor;
+        else if(lastGenGrid[r][c] == electronHeadColor){
+          grid[r][c] = electronTailColor;
         }
+        else if(lastGenGrid[r][c] == electronTailColor){
+          grid[r][c] = conductor;
+        }
+        else if(electronHeadNeighbors == 1 || electronHeadNeighbors == 2){
+          grid[r][c] = electronHeadColor;
+        }d
         
       }
     }
@@ -70,15 +76,10 @@ public class gameOfWireworld{
   public void initalizeGridForGame(){
     for(int r = 0; r < grid.length; r++){
       for(int c = 0; c<grid[0].length; c++){
-        if(random(0,1) <= percentStartingAlive){
-          grid[r][c] = aliveColor;
-        }
-         else{
-           grid[r][c] = deadColor;
-         }
-        }
-      }
+        grid[r][c] = emptyColor;
     
         
 }
+}
+  }
 }
