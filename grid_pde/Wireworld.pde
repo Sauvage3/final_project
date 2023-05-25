@@ -1,10 +1,20 @@
-public class gameOfWireworld extends baseGame{
+public class gameOfWireworld{
   color emptyColor = color(#000000);
   color electronHeadColor = color(#1421FC);
   color electronTailColor = color(#FC2814);
   color conductor = color(#FCF114);
   
+  public int[][] saveOldGrid(){
+    color[][] oldGrid = new color[grid.length][grid[0].length];
+    for(int r = 0; r< grid.length;r++){
+      for(int c = 0; c < grid[0].length; c++){
+        oldGrid[r][c] = grid[r][c];
+      }
+    }
+    return oldGrid;
 
+  }
+  
   public int numOfElectronHeadNeighbors(int row, int column){
     int startPosY = row - 1;
     int startPosX = column - 1;
@@ -28,15 +38,12 @@ public class gameOfWireworld extends baseGame{
     int electronHeadCount  = 0;
     for(int r = startPosY; r < startPosY + viableRows; r++){
       for(int c = startPosX; c < startPosX + viableColumns; c++){
-        if(r == row && c == column){
-        }
-        
-        else if(grid[r][c] == electronHeadColor){
-          electronHeadCount++;
+        if(grid[r][c] == aliveColor){
+          aliveCount++;
         }
       }
     }
-    return electronHeadCount;
+    return aliveCount;
   }
       
       
@@ -46,24 +53,32 @@ public class gameOfWireworld extends baseGame{
     color[][] lastGenGrid = saveOldGrid();
     for(int r = 0; r < grid.length; r++){
       for(int c = 0; c<grid[0].length; c++){
-        int electronHeadNeighbors = numOfElectronHeadNeighbors(r,c);
-        if(lastGenGrid[r][c] == emptyColor){
+        int aliveCells = numOfLiveNeighbors(r,c);
+        if(lastGenGrid[r][c] == deadColor){
+          if(aliveCells == 3){
+            grid[r][c] = aliveColor;
+          }
         }
-        else if(lastGenGrid[r][c] == electronHeadColor){
-          grid[r][c] = electronTailColor;
+        else if(aliveCells < 2 || aliveCells > 3){
+          grid[r][c] = deadColor;
         }
-        else if(lastGenGrid[r][c] == electronTailColor){
-          grid[r][c] = conductor;
-        }
-        else if(electronHeadNeighbors == 1 || electronHeadNeighbors == 2){
-          grid[r][c] = electronHeadColor;
-        }d
         
       }
     }
   }
   
   public void initalizeGridForGame(){
-    super.initalizeEmptyGrid();
+    for(int r = 0; r < grid.length; r++){
+      for(int c = 0; c<grid[0].length; c++){
+        if(random(0,1) <= percentStartingAlive){
+          grid[r][c] = aliveColor;
+        }
+         else{
+           grid[r][c] = deadColor;
+         }
+        }
+      }
+    
+        
 }
 }
