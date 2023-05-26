@@ -1,9 +1,12 @@
 public class gameOfWireworld extends gameOfLife{
   color emptyColor = deadColor;
   //aka empty
-  color electronHeadColor = color(#1421FC);
-  color electronTailColor = color(#FC2814);
-  color conductor = color(#FCF114);
+  color electronHeadColor = color(67,17,209);
+  color electronTailColor = color(232,53,33);
+  color conductor = color(228,232,33);
+  
+  public gameOfWireworld(){
+    println(
   
  
   
@@ -40,21 +43,24 @@ public class gameOfWireworld extends gameOfLife{
       
       
       
-      
+  @Override    
   public void runGeneration(){
     color[][] lastGenGrid = saveOldGrid();
     for(int r = 0; r < grid.length; r++){
       for(int c = 0; c<grid[0].length; c++){
-        int aliveCells = numOfLiveNeighbors(r,c);
-        if(lastGenGrid[r][c] == deadColor){
-          if(aliveCells == 3){
-            grid[r][c] = aliveColor;
-          }
+        int electronHeads = numOfElectronHeadNeighbors(r,c);
+        color center = lastGenGrid[r][c];
+        if(center == emptyColor){
         }
-        else if(aliveCells < 2 || aliveCells > 3){
-          grid[r][c] = deadColor;
+        else if(center == electronHeadColor){
+          grid[r][c] = electronTailColor;
         }
-        
+        else if(center == electronTailColor){
+          grid[r][c] = conductor;
+        }
+        else if(electronHeads == 1 || electronHeads == 2){
+          grid[r][c] = electronHeadColor;
+        }
       }
     }
   }
@@ -62,7 +68,21 @@ public class gameOfWireworld extends gameOfLife{
   @Override
   public void initalizeGridForGame(int desiredSize){
    initializeEmptyGrid(desiredSize);
+  }
+  
+  @Override
+   public void clickModify(int cellType, int x, int y){
+     //change this to make cellType determine what click does
+    int row = y / size;
+    int column = x / size;
+    if(grid[row][column] == deadColor){
+      grid[row][column] = conductor;
+    }
+    else{
+      grid[row][column] = deadColor;
+    }
+}
     
         
-}
+
 }
