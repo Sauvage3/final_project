@@ -72,7 +72,8 @@ public class gameOfWireworld extends gameOfLife{
   
   @Override
    public void clickModify(int cellType, int x, int y){
-     //change this to make cellType determine what click does
+    color[] types = {emptyColor, electronHeadColor, electronTailColor, conductor};
+    
     int row = y / size;
     int column = x / size;
     if(grid[row][column] == deadColor){
