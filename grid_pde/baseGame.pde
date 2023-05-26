@@ -1,6 +1,6 @@
 public class gameOfLife{
-  color aliveColor =  color(#17BC20);
-  color deadColor =  color(#AD1A1A);
+  color aliveColor =  color(23,188,72);
+  color deadColor =  color(173,26,26);
   
   public int[][] saveOldGrid(){
     color[][] oldGrid = new color[grid.length][grid[0].length];
@@ -67,9 +67,13 @@ public class gameOfLife{
     }
   }
   
-  public void initalizeGridForGame(){
-    for(int r = 0; r < grid.length; r++){
-      for(int c = 0; c<grid[0].length; c++){
+  public void initalizeGridForGame(int desiredSize){
+    size = desiredSize; 
+    int squareWidth = width * maxSize / size;
+    int squareHeight = height * maxSize / size;
+     grid = new color[squareHeight][squareWidth];
+    for(int r = 0; r < squareHeight; r++){
+      for(int c = 0; c<squareWidth; c++){
         if(random(0,1) <= percentStartingAlive){
           grid[r][c] = aliveColor;
         }
@@ -81,6 +85,17 @@ public class gameOfLife{
     
         
 }
+
+
+  
+  public void displayGrid(){
+    for(int r  = 0; r < height  / size;r++){
+      for(int c = 0; c < width  / size;c++){
+        fill(grid[(r + x + 2700)%270][(c + y + 4800)%480]);
+        square(c * size, r * size, size);
+      }
+    }
+  }
 }
 
 
