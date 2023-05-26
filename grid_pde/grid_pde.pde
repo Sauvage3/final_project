@@ -71,6 +71,7 @@ void draw(){
 }
 
 void mouseClicked(){
+ setupDone = false;
  test1.clickModify(mouseX, mouseY);
  test1.displayGrid();
 }

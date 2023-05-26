@@ -86,6 +86,19 @@ public class gameOfLife{
         
 }
 
+public void initializeEmptyGrid(int desiredSize){
+    size = desiredSize; 
+    int squareWidth = width * maxSize / size;
+    int squareHeight = height * maxSize / size;
+     grid = new color[squareHeight][squareWidth];
+    for(int r = 0; r < squareHeight; r++){
+      for(int c = 0; c<squareWidth; c++){
+        grid[r][c] = deadColor;
+      }
+    }
+}
+  
+
 
   
   public void displayGrid(){
