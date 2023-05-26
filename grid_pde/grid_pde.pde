@@ -4,6 +4,7 @@ float percentStartingAlive = 0.1;
 int maxSize = 10;
 int x = 0;
 int y = 0;
+boolean setupDone = false;
 //multiple of sreen size grid created too
 gameOfLife test1 = new gameOfLife();
 
@@ -53,17 +54,23 @@ void keyPressed(){
   y = y + 5;
   test1.displayGrid();
  }
+ if(key == 10){
+   setupDone = true;
+ }
+ else{
+   print((int)key);
+ }
 }
 
 void draw(){
  
-  if(frameCount % 10 == 0){
+  if(frameCount % 10 == 0 && setupDone == true){
   test1.runGeneration();
   test1.displayGrid();
   }
 }
 
-//void mouseClicked(){
-//  gridAdjustifier worker = new gridAdjustifier();
-//  worker.gridModifierOnClick(mouseX, mouseY);
-//}
+void mouseClicked(){
+ test1.clickModify(mouseX, mouseY);
+ test1.displayGrid();
+}

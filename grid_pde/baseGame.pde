@@ -96,6 +96,17 @@ public class gameOfLife{
       }
     }
   }
+  
+  public void clickModify(int x, int y){
+    int row = y / size;
+    int column = x / size;
+    if(grid[row][column] == aliveColor){
+      grid[row][column] = deadColor;
+    }
+    else{
+      grid[row][column] = aliveColor;
+    }
+}
 }
 
 
