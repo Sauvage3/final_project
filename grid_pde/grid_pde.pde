@@ -7,7 +7,7 @@ int y = 0;
 int cellType;
 boolean setupDone = false;
 //multiple of sreen size grid created too
-gameOfLife test1 = new gameOfWireworld();
+gameOfLife test1 = new gameOfLife();
 
 
 
@@ -91,13 +91,12 @@ void draw(){
 
 void mouseClicked(){
   setupDone = false;
-  if(test1 instanceof gameOfWireworld){
-    test1.clickModify(cellType, mouseX,mouseY);
-     test1.displayGrid();
-  }
-  else{
+  //if(test1 instanceof gameOfWireworld){
+  //  test1.clickModify(cellType, mouseX,mouseY);
+  //   test1.displayGrid();
+  //}
+  //else{
  
  test1.clickModify(mouseX, mouseY);
  test1.displayGrid();
-}
 }
