@@ -5,10 +5,12 @@ int maxSize = 10;
 int x = 0;
 int y = 0;
 int cellType;
-float xcor,ycor;
+gameOfLife test1;
+
 boolean setupDone = false;
 //multiple of sreen size grid created too
-gameOfLife test1 = new gameOfLife();
+
+  
 boolean isDragging;
 float zoomLev = 1;
 
@@ -17,6 +19,10 @@ float zoomLev = 1;
 
   
 void setup(){
+
+test1 = new gameOfWireworld();
+
+
   
   
   fullScreen();
@@ -31,14 +37,14 @@ void setup(){
 }
 void mousePressed() {
 
-  if (mouseButton == LEFT) {
+  if (mouseButton == RIGHT) {
     isDragging = true;
   }
 }
 
 void mouseReleased() {
  
-  if (mouseButton == LEFT) {
+  if (mouseButton == RIGHT) {
     isDragging = false;
   }
 }
@@ -54,22 +60,7 @@ void keyPressed(){
    size = size - 10;
    test1.displayGrid();
  }
- if (key == 'w') {
-  x = x - 5;
-  test1.displayGrid();
- }
- if (key == 'a') {
-  y = y - 5;
-  test1.displayGrid();
- }
- if (key == 's') {
-  x = x + 5;
-  test1.displayGrid();
- }
- if (key == 'd') {
-  y = y + 5;
-  test1.displayGrid();
- }
+
  
  if(key == '0'){
    cellType = 0;
@@ -116,10 +107,10 @@ void mouseWheel(MouseEvent event) {
   
   // Adjust the zoom level based on the scroll direction
   if (e > 0) {
-    size *= 1.1;
+    size += 1;
     
   } else {
-    size *= .9;
+    size -= 1;
     
   }
   
@@ -129,12 +120,13 @@ void mouseWheel(MouseEvent event) {
 
 void mouseClicked(){
   setupDone = false;
-  //if(test1 instanceof gameOfWireworld){
-  //  test1.clickModify(cellType, mouseX,mouseY);
-  //   test1.displayGrid();
-  //}
-  //else{
+  if(test1 instanceof gameOfWireworld){
+    test1.clickModify(cellType, mouseX,mouseY);
+     test1.displayGrid();
+  }
+  else{
  
  test1.clickModify(mouseX, mouseY);
  test1.displayGrid();
+  }
 }
