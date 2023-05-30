@@ -5,10 +5,12 @@ int maxSize = 10;
 int x = 0;
 int y = 0;
 int cellType;
+float xcor,ycor;
 boolean setupDone = false;
 //multiple of sreen size grid created too
 gameOfLife test1 = new gameOfLife();
-
+boolean isDragging;
+float zoomLev = 1;
 
 
 
@@ -24,11 +26,24 @@ void setup(){
 
   test1.initalizeGridForGame(40);
   test1.displayGrid();
+   isDragging = false;
  
 }
+void mousePressed() {
 
-void keyPressed(){
+  if (mouseButton == LEFT) {
+    isDragging = true;
+  }
+}
+
+void mouseReleased() {
  
+  if (mouseButton == LEFT) {
+    isDragging = false;
+  }
+}
+void keyPressed(){
+  
  if (key == '='){
    println("triggered");
    size = size + 10;
@@ -87,6 +102,29 @@ void draw(){
   test1.runGeneration();
   test1.displayGrid();
   }
+   if (isDragging) {
+    x = -1 * mouseY/25;
+    y = -1 * mouseX/25;
+    test1.displayGrid();
+  }
+  
+  test1.displayGrid();
+}
+void mouseWheel(MouseEvent event) {
+  // Check if the scroll wheel is moved
+  float e = event.getCount();
+  
+  // Adjust the zoom level based on the scroll direction
+  if (e > 0) {
+    size *= 1.1;
+    
+  } else {
+    size *= .9;
+    
+  }
+  
+  // Constrain the zoom level within a certain range
+  zoomLev = constrain(zoomLev, 0.1, 5.0);
 }
 
 void mouseClicked(){
