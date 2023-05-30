@@ -5,9 +5,9 @@ int maxSize = 10;
 int x = 0;
 int y = 0;
 int cellType;
-gameOfLife test1;
+fireModel test1 = new fireModel();
 
-boolean setupDone = false;
+boolean setupDone = true;
 //multiple of sreen size grid created too
 
   
@@ -20,14 +20,15 @@ float zoomLev = 1;
   
 void setup(){
 
-test1 = new gameOfWireworld();
+test1 = new fireModel();
 
 
   
   
   fullScreen();
-  strokeWeight(4);
-  stroke(#080202);
+  strokeWeight(2);
+  stroke(#FFFFFF);
+  textSize(18);
   
 
   test1.initalizeGridForGame(40);
@@ -74,10 +75,11 @@ void keyPressed(){
    cellType = 2;
  }
  
- if(key == '0'){
-   cellType = 2;
+ if(key == '7'){
+   cellType = 47;
  }
  
+
    
  if(key == 10){
    setupDone = true;
@@ -118,15 +120,15 @@ void mouseWheel(MouseEvent event) {
   zoomLev = constrain(zoomLev, 0.1, 5.0);
 }
 
-void mouseClicked(){
-  setupDone = false;
-  if(test1 instanceof gameOfWireworld){
-    test1.clickModify(cellType, mouseX,mouseY);
-     test1.displayGrid();
-  }
-  else{
+//void mouseClicked(){
+//  setupDone = false;
+//  if(test1 instanceof gameOfWireworld){
+//    test1.wireworldClickModify(cellType, mouseX,mouseY);
+//     test1.displayGrid();
+//  }
+//  else{
  
- test1.clickModify(mouseX, mouseY);
- test1.displayGrid();
-  }
-}
+// test1.clickModify(mouseX, mouseY);
+// test1.displayGrid();
+//  }
+//}

@@ -5,6 +5,7 @@ public class gameOfWireworld extends gameOfLife{
   color electronTailColor = color(232,53,33);
   color conductor = color(228,232,33);
   color[][] modifiedGridCells;
+  color[][] lastGenGrid;
   
   public gameOfWireworld(){
     println("constructed new wireworld");
@@ -35,7 +36,10 @@ public class gameOfWireworld extends gameOfLife{
     int electronHeadCount  = 0;
     for(int r = startPosY; r < startPosY + viableRows; r++){
       for(int c = startPosX; c < startPosX + viableColumns; c++){
-        if(grid[r][c] == aliveColor){
+        if(r == row && c == column){
+        }
+        
+        else if(lastGenGrid[r][c] == electronHeadColor){
           electronHeadCount++;
         }
       }
@@ -47,10 +51,11 @@ public class gameOfWireworld extends gameOfLife{
       
   @Override    
   public void runGeneration(){
-    color[][] lastGenGrid = saveOldGrid();
+    lastGenGrid = saveOldGrid();
     for(int r = 0; r < grid.length; r++){
       for(int c = 0; c<grid[0].length; c++){
         int electronHeads = numOfElectronHeadNeighbors(r,c);
+        
         color center = lastGenGrid[r][c];
         if(center == emptyColor){
         }
@@ -73,15 +78,30 @@ public class gameOfWireworld extends gameOfLife{
    modifiedGridCells = new color[grid.length][grid[0].length];
   }
   
+@Override
+    public void displayGrid(){
+    for(int r  = 0; r < height  / size;r++){
+      for(int c = 0; c < width  / size;c++){
+        fill(grid[(r + x + 2700)%270][(c + y + 4800)%480]);
+        square(c * size, r * size, size);
+        
+      }
+    }
+  }
   
-   public void clickModify(int cellType, int x, int y){
+  
+   public void wireworldClickModify(int cellType, int x, int y){
      
     
-    color[] types = {emptyColor, electronHeadColor, electronTailColor, conductor};
+    color[] types = {emptyColor, electronHeadColor, conductor};
+    int magicNum = 47;
     
     int row = y / size;
     int column = x / size;
-    if(grid[row][column] != types[cellType]){
+    if(cellType == magicNum){
+      println(numOfElectronHeadNeighbors(row,column));
+    }
+    else if(grid[row][column] != types[cellType]){
       modifiedGridCells[row][column] = grid[row][column];
       grid[row][column] = types[cellType];
     }
