@@ -110,9 +110,9 @@ public void initializeEmptyGrid(int desiredSize){
     }
   }
   
-  public void clickModify(int x, int y){
-    int row = y / size;
-    int column = x / size;
+  public void clickModify(int xClick, int yClick){
+    int row = yClick / size ;
+    int column = xClick  / size;
     if(grid[row][column] == aliveColor){
       grid[row][column] = deadColor;
     }
