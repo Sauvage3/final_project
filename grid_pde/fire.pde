@@ -10,15 +10,20 @@ public class fireModel extends gameOfLife{
     int squareHeight = height * maxSize / size;
      grid = new color[squareHeight][squareWidth];
     for(int r = 0; r < squareHeight; r++){
-      for(int c = 0; c<squareWidth; c++){
+      for(int c = 1; c<squareWidth; c++){
         if(random(0,1) <= startingPct){
           grid[r][c] = aliveColor;
         }
          else{
-           grid[r][c] = deadColor;
+           grid[r][c] = emptyColor;
          }
         }
       }
+      
+      for(int r = 0;r < grid.length;r++){
+        grid[r][0] = fireColor;
+      }
+        
     
         
 }
@@ -26,17 +31,33 @@ public class fireModel extends gameOfLife{
  public void runGeneration(){
     color[][] lastGenGrid = super.saveOldGrid();
     for(int r = 0; r < grid.length; r++){
-      for(int c = 0; c<grid[0].length; c++){
-        if(lastGenGrid[r][c] == fireColor){
-          grid[r + 1][c] = fireColor;
-          grid[r - 1][c] = fireColor;
-          grid[r][c - 1] = fireColor;
-          grid[r][c + 1] = fireColor;
-          
+      for(int c = 0; c <grid[0].length; c++){
         
-      }
+        if(lastGenGrid[r][c] == fireColor){
+          if(r + 1 < grid.length && grid[r+1][c] == aliveColor){
+          grid[r + 1][c] = fireColor;
+          }
+          if(c > 0 && grid[r ][c - 1] == aliveColor) {
+          grid[r][c - 1] = fireColor;
+          }
+          if(c < grid[0].length && grid[r][c + 1] == aliveColor){
+          grid[r][c + 1] = fireColor;
+          }
+          if(r > 0 && grid[r-1][c] == aliveColor){
+          grid[r - 1][c] = fireColor;
+          }
     }
   }
 }
+ }
+
+public void displayGrid(){
+    for(int r  = 0; r < height  / size;r++){
+      for(int c = 0; c < width  / size;c++){
+        fill(grid[(r + x + 2700)%270][(c + y + 4800)%480]);
+        square(c * size, r * size, size);
+      }
+    }
+  }
 
 }

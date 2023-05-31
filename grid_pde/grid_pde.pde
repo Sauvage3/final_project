@@ -11,7 +11,7 @@ boolean setupDone = true;
 //multiple of sreen size grid created too
 
   
-boolean isDragging;
+boolean isDragging = false;
 float zoomLev = 1;
 
 
@@ -20,7 +20,7 @@ float zoomLev = 1;
   
 void setup(){
 
-test1 = new fireModel();
+
 
 
   
@@ -31,24 +31,28 @@ test1 = new fireModel();
   textSize(18);
   
 
-  test1.initalizeGridForGame(40);
+  test1.initalizeGridForGame(0.54, 40);
   test1.displayGrid();
    isDragging = false;
  
 }
-void mousePressed() {
+//void mousePressed() {
+//  if(test1 instanceof fireModel){
+//  }
+  
+//  else if (mouseButton == RIGHT) {
+//    isDragging = true;
+//  }
+//}
 
-  if (mouseButton == RIGHT) {
-    isDragging = true;
-  }
-}
-
-void mouseReleased() {
- 
-  if (mouseButton == RIGHT) {
-    isDragging = false;
-  }
-}
+//void mouseReleased() {
+//  if(test1 instanceof fireModel){
+//  }
+  
+//  else if (mouseButton == RIGHT) {
+//    isDragging = false;
+//  }
+//}
 void keyPressed(){
   
  if (key == '='){
@@ -91,28 +95,36 @@ void keyPressed(){
 
 void draw(){
  
-  if(frameCount % 10 == 0 && setupDone == true){
+  if(frameCount % 10 == 0){// && setupDone == true){
+    
   test1.runGeneration();
   test1.displayGrid();
   }
-   if (isDragging) {
-    x = -1 * mouseY/25;
-    y = -1 * mouseX/25;
-    test1.displayGrid();
   }
+//  }
+//   if (isDragging) {
+//    x = -1 * mouseY/25;
+//    y = -1 * mouseX/25;
+//    test1.displayGrid();
+//  }
   
-  test1.displayGrid();
-}
+  
+//}
 void mouseWheel(MouseEvent event) {
-  // Check if the scroll wheel is moved
+   //Check if the scroll wheel is moved
   float e = event.getCount();
+ 
   
   // Adjust the zoom level based on the scroll direction
   if (e > 0) {
     size += 1;
+     strokeWeight(getGraphics().strokeWeight + 0.04);
     
-  } else {
+    
+  } else if(size >6){
     size -= 1;
+     strokeWeight(getGraphics().strokeWeight - 0.04);
+     
     
   }
   
