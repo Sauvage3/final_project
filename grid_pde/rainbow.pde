@@ -61,7 +61,7 @@ public class rainbowGame extends gameOfLife {
   }
   
   public color[] neighborColors(int row, int column) {
-    color[] neighbors;
+    color[] neighbors = new color[8];
     int startPosY = row - 1;
     int startPosX = column - 1;
     int viableRows = 3;
@@ -88,7 +88,8 @@ public class rainbowGame extends gameOfLife {
         if(r == row && c == column){
         }
         else if(grid[r][c] != dead){
-          neighbors += grid[r][c];
+          aliveCount++;
+          neighbors[aliveCount] = grid[r][c];
         }
       }
     }
@@ -103,13 +104,12 @@ public class rainbowGame extends gameOfLife {
     for(int r = 0; r < squareHeight; r++){
       for(int c = 0; c<squareWidth; c++){
         if(random(0,1) <= percentStartingAlive){
-          grid[r][c] = squareColor(c, r);
+          grid[r][c] = squareColor((neighborColors(r, c))[0], (neighborColors(r, c))[1]. (neighborColors(r, c))[2]);
         }
          else{
            grid[r][c] = color(0, 0, 0);
          }
-        }
-      }        
-  }  
-
+       }
+     }    
+   }
 }
