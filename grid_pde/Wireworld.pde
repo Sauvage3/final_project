@@ -72,44 +72,54 @@ public class gameOfWireworld extends gameOfLife{
     }
   }
   
-  @Override
-  public void initalizeGridForGame(int desiredSize){
-   super.initializeEmptyGrid(desiredSize);
-   modifiedGridCells = new color[grid.length][grid[0].length];
-  }
-  
-@Override
-    public void displayGrid(){
-    for(int r  = 0; r < height  / size;r++){
-      for(int c = 0; c < width  / size;c++){
-        fill(grid[(r + x + 2700)%270][(c + y + 4800)%480]);
-        square(c * size, r * size, size);
-        
+
+public void initializeGridForGame(float desiredSize) {
+  size = desiredSize;
+  int squareWidth = int(width * maxSize / size);
+  int squareHeight = int(height * maxSize / size);
+  grid = new color[squareHeight][squareWidth];
+  for (int r = 0; r < squareHeight; r++) {
+    for (int c = 0; c < squareWidth; c++) {
+      if (random(0, 1) <= percentStartingAlive) {
+        grid[r][c] = aliveColor;
+      } else {
+        grid[r][c] = deadColor;
       }
     }
   }
-  
-  
-   public void wireworldClickModify(int cellType, int x, int y){
-     
-    
-    color[] types = {emptyColor, electronHeadColor, conductor};
-    int magicNum = 47;
-    
-    int row = y / size;
-    int column = x / size;
-    if(cellType == magicNum){
-      println(numOfElectronHeadNeighbors(row,column));
-    }
-    else if(grid[row][column] != types[cellType]){
-      modifiedGridCells[row][column] = grid[row][column];
-      grid[row][column] = types[cellType];
-    }
-    else{
-      grid[row][column] = modifiedGridCells[row][column] ;
-      modifiedGridCells[row][column] = 0;
-    }
 }
+
+public void initializeEmptyGrid(float desiredSize) {
+  size = desiredSize;
+  int squareWidth = int(width * maxSize / size);
+  int squareHeight = int(height * maxSize / size);
+  grid = new color[squareHeight][squareWidth];
+  for (int r = 0; r < squareHeight; r++) {
+    for (int c = 0; c < squareWidth; c++) {
+      grid[r][c] = deadColor;
+    }
+  }
+}
+
+public void displayGrid() {
+  for (int r = 0; r < int(height / size); r++) {
+    for (int c = 0; c < int(width / size); c++) {
+      fill(grid[(r + int(y / size) + 2700) % 270][(c + int(x / size) + 4800) % 480]);
+      square(c * size, r * size, size);
+    }
+  }
+}
+
+public void clickModify(int xClick, int yClick) {
+  int row = int(yClick / size);
+  int column = int(xClick / size);
+  if (grid[row][column] == aliveColor) {
+    grid[row][column] = deadColor;
+  } else {
+    grid[row][column] = aliveColor;
+  }
+}
+
     
         
 

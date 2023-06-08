@@ -95,21 +95,22 @@ public class rainbowGame extends gameOfLife {
     }
     return neighbors;
   }
-  
-  public void initalizeGridForGame(int desiredSize){
-    size = desiredSize; 
-    int squareWidth = width * maxSize / size;
-    int squareHeight = height * maxSize / size;
-     grid = new color[squareHeight][squareWidth];
-    for(int r = 0; r < squareHeight; r++){
-      for(int c = 0; c<squareWidth; c++){
-        if(random(0,1) <= percentStartingAlive){
-          grid[r][c] = squareColor((neighborColors(r, c))[0], (neighborColors(r, c))[1]. (neighborColors(r, c))[2]);
-        }
-         else{
-           grid[r][c] = color(0, 0, 0);
-         }
-       }
-     }    
-   }
+ @Override
+public void initializeGridForGame(float desiredSize) {
+  size = desiredSize;
+  int squareWidth = int(width * maxSize / size);
+  int squareHeight = int(height * maxSize / size);
+  grid = new color[squareHeight][squareWidth];
+  for (int r = 0; r < squareHeight; r++) {
+    for (int c = 0; c < squareWidth; c++) {
+      if (random(0, 1) <= percentStartingAlive) {
+        int[] neighborColors = neighborColors(r, c);
+        grid[r][c] = squareColor(neighborColors[0], neighborColors[1], neighborColors[2]);
+      } else {
+        grid[r][c] = color(0, 0, 0);
+      }
+    }
+  }
+}
+
 }

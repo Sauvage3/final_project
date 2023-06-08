@@ -1,7 +1,7 @@
 color[][] grid;
-int size;
+float size;
 float percentStartingAlive = 0.1;
-int maxSize = 10;
+float maxSize = 10.0;
 int x = 0;
 int y = 0;
 int cellType;
@@ -31,7 +31,7 @@ void setup(){
   textSize(18);
   
 
-  test1.initalizeGridForGame(0.54, 40);
+  test1.initializeGridForGame(0.54, 40.0);
   test1.displayGrid();
    isDragging = false;
  
@@ -57,12 +57,12 @@ void keyPressed(){
   
  if (key == '='){
    println("triggered");
-   size = size + 10;
+   size += 10.0;
    test1.displayGrid();
  }
- if (key == '-' && size > 10){
+ if (key == '-' && size > 10.0){
    println("triggered");
-   size = size - 10;
+   size -=10.0;
    test1.displayGrid();
  }
 
@@ -111,25 +111,18 @@ void draw(){
   
 //}
 void mouseWheel(MouseEvent event) {
-   //Check if the scroll wheel is moved
   float e = event.getCount();
- 
-  
-  // Adjust the zoom level based on the scroll direction
+
   if (e > 0) {
-    size += 1;
-     strokeWeight(getGraphics().strokeWeight + 0.04);
-    
-    
-  } else if(size >6){
-    size -= 1;
-     strokeWeight(getGraphics().strokeWeight - 0.04);
-     
-    
+    zoomLev += 0.1;
+  } else if (zoomLev > 0.2) {
+    zoomLev -= 0.1;
   }
-  
-  // Constrain the zoom level within a certain range
-  zoomLev = constrain(zoomLev, 0.1, 5.0);
+
+  size = maxSize * zoomLev;
+  strokeWeight(2.0 / zoomLev);
+
+  zoomLev = constrain(zoomLev, 1.0, 10.0);
 }
 
 //void mouseClicked(){
