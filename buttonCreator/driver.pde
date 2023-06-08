@@ -5,21 +5,26 @@ button button3;
 button button4;
 button[] buttons =  new button[5];
 int currentButtonIndex = 0;
+String currentTyping;
+Console test;
 
 
 void setup(){
   fullScreen();
+  textAlign(LEFT);
+   test = new Console();
   fill(255);
-   button0 = new button(100,100,40);
+   button0 = new button(100,100,40, 0.0);
    buttons[0] = button0;
-   button1 = new button(200,100,40);
+   button1 = new button(200,100,40, 0.0);
       buttons[1] = button1;
-   button2 = new button(300,100,40);
+   button2 = new button(300,100,40, 0.0);
       buttons[2] = button2;
-   button3 = new button(400,100,40);
+   button3 = new button(400,100,40,0.0);
       buttons[3] = button3;
-   button4 = new button(500,100,40);
+   button4 = new button(500,100,40,0.0);
         buttons[4] = button4;
+        button4.labelButton("button4");
         
 }
 
@@ -46,6 +51,18 @@ void mouseClicked(){
     }
   }
 
+
+void keyPressed(){
+  println(key);
+  if(key == 10 && currentTyping.length() > 0){
+    test.addText(currentTyping);
+    currentTyping = "";
+  }
+  
+  else if(Character.isDefined(key) && key != 10){
+    currentTyping += key;
+  }
+}
 //  if(mouseX >= 50 && mouseX <= 150){
 //    button0.pressButton();
 //  }

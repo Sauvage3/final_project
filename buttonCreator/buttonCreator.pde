@@ -3,9 +3,20 @@ public class button{
   float x;
   float y;
   boolean buttonPressed = false;
+  boolean buttonHasValue = true;
+  float buttonValue = 0.0;
+  float defaultValue = 0.0;
   
   
-  public button(float x, float y, float extent){
+  
+  public button(float x, float y, float extent, float defaultValue){
+    //default value should be set to 0.0 if button no value
+    if(defaultValue != 0.0){
+      this.defaultValue = defaultValue;
+      this.buttonValue = defaultValue;
+      this.buttonHasValue = true;
+    }
+    
     
     noStroke();
     fill(255);
@@ -22,9 +33,31 @@ public class button{
     return string;
   }
   
-  public void labelButton(String text){
-    text(text, x, y + 50);
+  public boolean buttonHasValue(){
+    return buttonHasValue;
   }
+  
+  //public void changeValue(){
+  //  if(buttonHasValue){
+  //    buttonValue = int(input
+  public void labelButton(String text){
+    textAlign(CENTER);
+    fill(0);
+    textSize(20);
+    text(text, x , y - extent );
+    textAlign(LEFT);
+  }
+  
+  public void displayButtonValue(){
+    if(!buttonHasValue){
+      throw new Exception("this button has no value");
+    }
+    else{
+      textAlign(CENTER);
+    fill(0);
+    textSize(20);
+    text(text, x , y - extent );
+    textAlign(LEFT);
   
   public boolean isButtonPressed(){
     return buttonPressed;
