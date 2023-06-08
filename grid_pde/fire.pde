@@ -3,30 +3,27 @@ public class fireModel extends gameOfLife{
   color emptyColor = color(5,5,5);
   color fireColor = color(245,30,10);
   
+
+void initializeGridForGame(float startingPct, float desiredSize) {
+  size = desiredSize;
+  int squareWidth = int(width * maxSize / size);
+  int squareHeight = int(height * maxSize / size);
+  grid = new color[squareHeight][squareWidth];
+  for (int r = 0; r < squareHeight; r++) {
+    for (int c = 1; c < squareWidth; c++) {
+      if (random(0, 1) <= startingPct) {
+        grid[r][c] = aliveColor;
+      } else {
+        grid[r][c] = emptyColor;
+      }
+    }
+  }
   
-  public void initalizeGridForGame(float startingPct, int desiredSize){
-    size = desiredSize; 
-    int squareWidth = width * maxSize / size;
-    int squareHeight = height * maxSize / size;
-     grid = new color[squareHeight][squareWidth];
-    for(int r = 0; r < squareHeight; r++){
-      for(int c = 1; c<squareWidth; c++){
-        if(random(0,1) <= startingPct){
-          grid[r][c] = aliveColor;
-        }
-         else{
-           grid[r][c] = emptyColor;
-         }
-        }
-      }
-      
-      for(int r = 0;r < grid.length;r++){
-        grid[r][0] = fireColor;
-      }
-        
-    
-        
+  for (int r = 0; r < grid.length; r++) {
+    grid[r][0] = fireColor;
+  }
 }
+
 
  public void runGeneration(){
     color[][] lastGenGrid = super.saveOldGrid();

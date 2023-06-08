@@ -61,7 +61,7 @@ public class rainbowGame extends gameOfLife {
   }
   
   public color[] neighborColors(int row, int column) {
-    color[] neighbors;
+    color[] neighbors = new color[8];
     int startPosY = row - 1;
     int startPosX = column - 1;
     int viableRows = 3;
@@ -88,28 +88,29 @@ public class rainbowGame extends gameOfLife {
         if(r == row && c == column){
         }
         else if(grid[r][c] != dead){
-          neighbors += grid[r][c];
+          aliveCount++;
+          neighbors[aliveCount] = grid[r][c];
         }
       }
     }
     return neighbors;
   }
-  
-  public void initalizeGridForGame(int desiredSize){
-    size = desiredSize; 
-    int squareWidth = width * maxSize / size;
-    int squareHeight = height * maxSize / size;
-     grid = new color[squareHeight][squareWidth];
-    for(int r = 0; r < squareHeight; r++){
-      for(int c = 0; c<squareWidth; c++){
-        if(random(0,1) <= percentStartingAlive){
-          grid[r][c] = squareColor(c, r);
-        }
-         else{
-           grid[r][c] = color(0, 0, 0);
-         }
-        }
-      }        
-  }  
+ @Override
+public void initializeGridForGame(float desiredSize) {
+  size = desiredSize;
+  int squareWidth = int(width * maxSize / size);
+  int squareHeight = int(height * maxSize / size);
+  grid = new color[squareHeight][squareWidth];
+  for (int r = 0; r < squareHeight; r++) {
+    for (int c = 0; c < squareWidth; c++) {
+      if (random(0, 1) <= percentStartingAlive) {
+        int[] neighborColors = neighborColors(r, c);
+        grid[r][c] = squareColor(neighborColors[0], neighborColors[1], neighborColors[2]);
+      } else {
+        grid[r][c] = color(0, 0, 0);
+      }
+    }
+  }
+}
 
 }
