@@ -37,6 +37,9 @@ public class Console{
 
 
 public void addText(String inp, boolean isUserGen){
+  if(isUserGen){
+       lastUserInput = inp;
+}
   if(currentLineHeight > height){
       fill(0);
     rect(width - conWidth, height - conHeight, conWidth, conHeight);
@@ -52,9 +55,7 @@ public void addText(String inp, boolean isUserGen){
   fill(255);
   text(inp, width - conWidth + (lineHeight / 4),  currentLineHeight);
   currentLineHeight += lineHeight;
-    if(isUserGen){
-       lastUserInput = inp;
-}
+    
 }
 
   public void createUserPrompt(String buttonLabel){
@@ -69,7 +70,12 @@ public void addText(String inp, boolean isUserGen){
   }
   
   public String getLastUserInput(){
-    return lastUserInput;
+   return lastUserInput;
+    
+  }
+  
+  public void resetUserInput(){
+    lastUserInput = "";
   }
 }
 

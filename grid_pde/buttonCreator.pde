@@ -51,7 +51,7 @@ public class button{
   
   public String getButtonLabel(){
     if(buttonLabel.equals("")){
-      return "no assigned label";
+      return "";
     }
     else{
       return buttonLabel;
