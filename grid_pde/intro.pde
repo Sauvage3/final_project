@@ -14,7 +14,7 @@ button game2;
 button game3;
 button game4;
 button done;
-button[] buttons =  new button[8];
+button[] buttons =  new button[7];
 button[] buttonsWValues = new button[3];
 Console test;
 boolean isButtonPressed = false;
@@ -66,11 +66,11 @@ void setup(){
      game2 = new button(100,1000,40, 0.0, "Wireworld");
    buttons[5] = game2;
    
-     game3 = new button(300,800,40, 0.0, "Fire Sim");
-   buttons[6] = game3;
+   //  game3 = new button(300,800,40, 0.0, "Fire Sim");
+   //buttons[6] = game3;
    
        game4 = new button(300,1000,40, 0.0, "Rainbow World");
-   buttons[7] = game4;
+   buttons[6] = game4;
    fill(0);
    textSize(80);
    text("Variations on Game of Life", 1500, 300);
@@ -160,12 +160,24 @@ void draw(){
       
       if(!gameInitalzied){
         strokeWeight(strokeWeight);
+         if( game1.isButtonPressed()){
+     test1 = new gameOfLife();
+   }
+   else if(game2.isButtonPressed()){
+     test1 = new gameOfWireworld();
+   }
+   //else if(game3.isButtonPressed()){
+   //  test1 = new fireModel();
+   //}
+   else{
+     test1 = new rainbowGame();
+   }
         if(game1.isButtonPressed()){
           test1.initializeGridForGame(size);
           
         }
         else if(game2.isButtonPressed()){
-          test1.initializeGridForGame(size);
+          test1.initializeEmptyGrid(size);
         
         }
         
@@ -241,9 +253,15 @@ void mouseClicked(){
  
     
      if(setupFinished){
+         if(test1 instanceof gameOfWireworld){
+    test1.wireworldClickModify(cellType, mouseX,mouseY);
+     test1.displayGrid();
+  }
+  else{
  test1.clickModify(mouseX, mouseY);
  test1.displayGrid();
   }
+     }
   
   else{
      for(button ex: buttons){
@@ -287,18 +305,7 @@ boolean isIn(button[] givenArray, button button){
 
 void whenDone(){
   size = sizeVal.getButtonValue();
-   if( game1.isButtonPressed()){
-     test1 = new gameOfLife();
-   }
-   else if(game2.isButtonPressed()){
-     test1 = new gameOfWireworld();
-   }
-   else if(game3.isButtonPressed()){
-     test1 = new fireModel();
-   }
-   else{
-     test1 = new rainbowGame();
-   }
+  
 
       maxSize = maxSizeVal.getButtonValue();
         percentStartingAlive = percentStartingAliveVal.getButtonValue();
@@ -311,7 +318,7 @@ void whenDone(){
 }
       
   
-//  setupDone = false;
+////  setupDone = false;
 //  if(test1 instanceof gameOfWireworld){
 //    test1.wireworldClickModify(cellType, mouseX,mouseY);
 //     test1.displayGrid();

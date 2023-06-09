@@ -110,13 +110,17 @@ public void displayGrid() {
   }
 }
 
-public void clickModify(int xClick, int yClick) {
+public void wireworldClickModify(int cellType, int xClick, int yClick) {
   int row = int(yClick / size);
   int column = int(xClick / size);
-  if (grid[row][column] == aliveColor) {
-    grid[row][column] = deadColor;
-  } else {
-    grid[row][column] = aliveColor;
+  if (cellType == 0) {
+    grid[row][column] = conductor;
+  } else if (cellType == 1) {
+    grid[row][column] = electronHeadColor;
+  }
+  
+  else if(cellType == 2 ){
+    grid[row][column] = emptyColor;
   }
 }
 

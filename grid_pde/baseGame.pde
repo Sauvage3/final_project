@@ -1,6 +1,15 @@
 public class gameOfLife{
   color aliveColor =  color(23,188,72);
   color deadColor =  color(173,26,26);
+
+  color fireColor = color(245,30,10);
+    int fire = 0;
+  int alive = 0;
+    color emptyColor = deadColor;
+  //aka empty
+  color electronHeadColor = color(67,17,209);
+  color electronTailColor = color(232,53,33);
+  color conductor = color(228,232,33);
   
   public int[][] saveOldGrid(){
     color[][] oldGrid = new color[grid.length][grid[0].length];
@@ -131,6 +140,41 @@ public void clickModify(int xClick, int yClick) {
     grid[row][column] = deadColor;
   } else {
     grid[row][column] = aliveColor;
+  }
+}
+
+void initializeGridForGameFire(float startingPct, float desiredSize) {
+  size = desiredSize;
+  int squareWidth = int(width * maxSize / size);
+  int squareHeight = int(height * maxSize / size);
+  grid = new color[squareHeight][squareWidth];
+  for (int r = 0; r < squareHeight; r++) {
+    for (int c = 1; c < squareWidth; c++) {
+      if (random(0, 1) <= startingPct) {
+        grid[r][c] = aliveColor;
+        alive++;
+      } else {
+        grid[r][c] = emptyColor;
+      }
+    }
+  }
+  
+  for (int r = 0; r < grid.length; r++) {
+    grid[r][0] = fireColor;
+  }
+}
+
+public void wireworldClickModify(int cellType, int xClick, int yClick) {
+  int row = int(yClick / size);
+  int column = int(xClick / size);
+  if (cellType == 0) {
+    grid[row][column] = conductor;
+  } else if (cellType == 1) {
+    grid[row][column] = electronHeadColor;
+  }
+  
+  else if(cellType == 2 ){
+    grid[row][column] = emptyColor;
   }
 }
 
