@@ -14,7 +14,7 @@ button game2;
 button game3;
 button game4;
 button done;
-button[] buttons =  new button[7];
+button[] buttons =  new button[8];
 button[] buttonsWValues = new button[3];
 Console test;
 boolean isButtonPressed = false;
@@ -66,11 +66,11 @@ void setup(){
      game2 = new button(100,1000,40, 0.0, "Wireworld");
    buttons[5] = game2;
    
-   //  game3 = new button(300,800,40, 0.0, "Fire Sim");
-   //buttons[6] = game3;
+     game3 = new button(300,800,40, 0.0, "Fire Sim");
+   buttons[6] = game3;
    
        game4 = new button(300,1000,40, 0.0, "Rainbow World");
-   buttons[6] = game4;
+   buttons[7] = game4;
    fill(0);
    textSize(80);
    text("Variations on Game of Life", 1500, 300);
@@ -162,33 +162,23 @@ void draw(){
         strokeWeight(strokeWeight);
          if( game1.isButtonPressed()){
      test1 = new gameOfLife();
+     test1.initializeGridForGame(size);
    }
    else if(game2.isButtonPressed()){
      test1 = new gameOfWireworld();
+      test1.initializeEmptyGrid(size);
+  
    }
-   //else if(game3.isButtonPressed()){
-   //  test1 = new fireModel();
-   //}
+   else if(game3.isButtonPressed()){
+     test1 = new fireModel();
+        test1.initializeGridForGameFire(percentStartingAlive, size);
+   
+   }
    else{
      test1 = new rainbowGame();
+       test1.initializeGridForGame(size);
    }
-        if(game1.isButtonPressed()){
-          test1.initializeGridForGame(size);
-          
-        }
-        else if(game2.isButtonPressed()){
-          test1.initializeEmptyGrid(size);
-        
-        }
-        
-        //else if(game3.isButtonPressed()){
-          
-        //  test1.initializeGridForGameFire(size, percentStartingAlive);
-        //}
-        
-       else{
-         test1.initializeGridForGame(size);
-       }
+      
         
          test1.displayGrid();
         gameInitalzied = true;
@@ -312,6 +302,7 @@ void whenDone(){
        test.addText(Float.toString(size), false);
        test.addText(Float.toString(maxSize), false);
        test.addText(Float.toString(percentStartingAlive), false);
+       test.addText(Boolean.toString(game3.isButtonPressed()), false);
        
        done.resetButton();
        setupFinished = true;
