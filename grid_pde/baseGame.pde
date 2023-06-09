@@ -7,6 +7,7 @@ public class gameOfLife{
     for(int r = 0; r< grid.length;r++){
       for(int c = 0; c < grid[0].length; c++){
         oldGrid[r][c] = grid[r][c];
+        
       }
     }
     return oldGrid;
@@ -46,7 +47,26 @@ public class gameOfLife{
     return aliveCount;
   }
       
-      
+public void displayText(){
+  int living = 0;
+  int dead = 0;
+  
+    for (int r = 0; r < grid.length; r++) {
+    for (int c = 0; c < grid[0].length; c++) {
+      if (grid[r][c] == aliveColor){
+        living++;
+      } else {
+        dead++;
+      }
+    }
+  }
+  
+  fill(255);
+  textAlign(CENTER);
+  textSize(20);
+  text("Alive Cells: " + living, width / 2, height - 30);
+  text("Dead Cells: " + dead, width / 2, height - 10);
+}
       
       
   public void runGeneration(){
