@@ -15,6 +15,11 @@ public class button{
     if(value != 0.0){
       this.buttonValue = value;
       this.buttonHasValue = true;
+      textAlign(CENTER);
+    fill(0);
+    textSize(20);
+    text(buttonValue, x , y + extent );
+    textAlign(LEFT);
     }
       
     if(label != ""){  
