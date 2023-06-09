@@ -55,7 +55,7 @@ void setup(){
 //}
 void keyPressed(){
   
- if (key == '='){
+/* if (key == '='){
    println("triggered");
    size += 10.0;
    test1.displayGrid();
@@ -65,6 +65,7 @@ void keyPressed(){
    size -=10.0;
    test1.displayGrid();
  }
+*/
 
  
  if(key == '0'){
@@ -120,7 +121,7 @@ void mouseWheel(MouseEvent event) {
   }
 
   size = maxSize * zoomLev;
-  strokeWeight(2.0 / zoomLev);
+  strokeWeight(zoomLev / 2.0);
 
   zoomLev = constrain(zoomLev, 1.0, 10.0);
 }
