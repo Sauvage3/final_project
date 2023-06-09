@@ -5,7 +5,8 @@ public class fireModel extends gameOfLife{
   int fire = 0;
   int alive = 0;
 
-void initializeGridForGame(float startingPct, float desiredSize) {
+
+void initializeGridForGameFire(float startingPct, float desiredSize) {
   size = desiredSize;
   int squareWidth = int(width * maxSize / size);
   int squareHeight = int(height * maxSize / size);

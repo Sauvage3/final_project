@@ -41,6 +41,7 @@ public class button{
     this.x = x;
     this.y = y;
     this.extent = extent;
+    strokeWeight(strokeWeight);
   }
   
   public String toString(){

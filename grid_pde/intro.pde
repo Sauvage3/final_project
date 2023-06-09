@@ -11,8 +11,10 @@ button percentStartingAliveVal;
 button maxSizeVal;
 button game1;
 button game2;
+button game3;
+button game4;
 button done;
-button[] buttons =  new button[6];
+button[] buttons =  new button[8];
 button[] buttonsWValues = new button[3];
 Console test;
 boolean isButtonPressed = false;
@@ -21,7 +23,7 @@ int currentButtonIndex = 0;
 String currentTyping = "";
 boolean setupFinished = false;
 boolean gameInitalzied = false;
-float strokeWeight = 10.0;
+float strokeWeight = 3.0;
 
 
 boolean setupDone = true;
@@ -29,7 +31,7 @@ boolean setupDone = true;
 
 
 boolean isDragging = false;
-float zoomLev = 1;
+float zoomLev = 3;
 
   
 void setup(){
@@ -58,11 +60,24 @@ void setup(){
      done = new button(100,1200,40, 0.0, "Done with settings");
    buttons[3] = done;
    
-     game1 = new button(100,800,40, 0.0, "game1");
+     game1 = new button(100,800,40, 0.0, "Base Game");
    buttons[4] = game1;
    
-     game2 = new button(100,1000,40, 0.0, "game2");
+     game2 = new button(100,1000,40, 0.0, "Wireworld");
    buttons[5] = game2;
+   
+     game3 = new button(300,800,40, 0.0, "Fire Sim");
+   buttons[6] = game3;
+   
+       game4 = new button(300,1000,40, 0.0, "Rainbow World");
+   buttons[7] = game4;
+   fill(0);
+   textSize(80);
+   text("Variations on Game of Life", 1500, 300);
+   textSize(30);
+   text("Made by Daniel, Daniel, and Chenkai", 1700, 600);
+   text("Click the top 3 buttons to set your values, then pick a game mode and hit done", 1500, 800);
+
 
 
   // isDragging = false;
@@ -144,20 +159,31 @@ void draw(){
     if(setupFinished){
       
       if(!gameInitalzied){
+        strokeWeight(strokeWeight);
         if(game1.isButtonPressed()){
           test1.initializeGridForGame(size);
-          test1.displayGrid();
+          
         }
-        else{
+        else if(game2.isButtonPressed()){
           test1.initializeGridForGame(size);
-          test1.displayGrid();
+        
         }
-        gameInitalzied
-        = true;
+        
+        //else if(game3.isButtonPressed()){
+          
+        //  test1.initializeGridForGameFire(size, percentStartingAlive);
+        //}
+        
+       else{
+         test1.initializeGridForGame(size);
+       }
+        
+         test1.displayGrid();
+        gameInitalzied = true;
       }
  
   if(frameCount % 10 == 0){// && setupDone == true){
-    
+    stroke(255);
   test1.runGeneration();
   test1.displayGrid();
   test1.displayText();
@@ -167,7 +193,12 @@ void draw(){
   else{
        if(isButtonPressed){
     if(!test.getLastUserInput().equals("")){
+      if(buttonPressed.equals(percentStartingAliveVal) && Float.parseFloat(test.getLastUserInput()) > 1){
+         buttonPressed.changeButtonValue(Float.parseFloat(test.getLastUserInput()) / 100);
+      }
+      else{
       buttonPressed.changeButtonValue(Float.parseFloat(test.getLastUserInput()));
+      }
       isButtonPressed = false;
       test.resetUserInput();
     }
@@ -191,10 +222,10 @@ void mouseWheel(MouseEvent event) {
 if(setupFinished){
   if (e > 0) {
     zoomLev += 0.1;
-    strokeWeight += 0.5;
+    strokeWeight += .55;
   } else if (zoomLev > 0.2) {
     zoomLev -= 0.1;
-    strokeWeight -= 0.5;
+    strokeWeight -= .55;
   }
 
   size = maxSize * zoomLev;
@@ -258,6 +289,12 @@ void whenDone(){
   size = sizeVal.getButtonValue();
    if( game1.isButtonPressed()){
      test1 = new gameOfLife();
+   }
+   else if(game2.isButtonPressed()){
+     test1 = new gameOfWireworld();
+   }
+   else if(game3.isButtonPressed()){
+     test1 = new fireModel();
    }
    else{
      test1 = new rainbowGame();
