@@ -2,9 +2,9 @@ import java.util.Random;
 public class rainbowGame extends gameOfLife {
 
   public int squareColor(int n1, int n2, int n3) {
-    float red = (red(n1) + red(n2) + red(n3)) / 3;
-    float green = (green(n1) + green(n2) + green(n3)) / 3;
-    float blue = (blue(n1) + blue(n2) + blue(n3)) / 3;
+    float red = (red(n1) + red(n2) + red(n3)) / 3 + 15;
+    float green = (green(n1) + green(n2) + green(n3)) / 3 + 15;
+    float blue = (blue(n1) + blue(n2) + blue(n3)) / 3 + 15;
     return color(red, green, blue);
   }
 
