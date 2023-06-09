@@ -123,6 +123,7 @@ public class button{
   }
   
   public void changeButtonValue(float value){
+    buttonHasValue = true;
       deleteButtonValue();
     buttonValue = value;
   
@@ -130,6 +131,11 @@ public class button{
     
   
 }
+
+public float getButtonValue(){
+  return buttonValue;
+  }
+  
   }
   
     

@@ -37,6 +37,7 @@ public class Console{
 
 
 public void addText(String inp, boolean isUserGen){
+  noStroke();
   if(isUserGen){
        lastUserInput = inp;
 }
@@ -48,7 +49,7 @@ public void addText(String inp, boolean isUserGen){
     fill(0);
      text("Console", width - conWidth + (lineHeight / 4), height - conHeight + (lineHeight / 1.5) + 5);
     currentLineHeight = height - conHeight + lineHeight * 2;
-    
+    strokeWeight(strokeWeight);
      }
  
     
