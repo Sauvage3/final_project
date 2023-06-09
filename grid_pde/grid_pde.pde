@@ -1,37 +1,28 @@
 color[][] grid;
 float size;
-float percentStartingAlive = 0.1;
+float percentStartingAlive = 0.3;
 float maxSize = 10.0;
 int x = 0;
 int y = 0;
 int cellType;
-fireModel test1 = new fireModel();
+gameOfLife test1 = new gameOfLife();
 
 boolean setupDone = true;
 //multiple of sreen size grid created too
 
-  
+
 boolean isDragging = false;
 float zoomLev = 1;
 
-
-
-
   
 void setup(){
-
-
-
-
-  
   
   fullScreen();
   strokeWeight(2);
   stroke(#FFFFFF);
   textSize(18);
-  
 
-  test1.initializeGridForGame(0.54, 40.0);
+  test1.initializeGridForGame(40.0);
   test1.displayGrid();
    isDragging = false;
  
@@ -55,7 +46,7 @@ void setup(){
 //}
 void keyPressed(){
   
-/* if (key == '='){
+ if (key == '='){
    println("triggered");
    size += 10.0;
    test1.displayGrid();
@@ -65,8 +56,6 @@ void keyPressed(){
    size -=10.0;
    test1.displayGrid();
  }
-*/
-
  
  if(key == '0'){
    cellType = 0;
@@ -83,8 +72,6 @@ void keyPressed(){
  if(key == '7'){
    cellType = 47;
  }
- 
-
    
  if(key == 10){
    setupDone = true;
@@ -100,8 +87,9 @@ void draw(){
     
   test1.runGeneration();
   test1.displayGrid();
+  test1.displayText();
   }
-  }
+ }
 //  }
 //   if (isDragging) {
 //    x = -1 * mouseY/25;
@@ -109,8 +97,8 @@ void draw(){
 //    test1.displayGrid();
 //  }
   
-  
 //}
+
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
 
@@ -121,10 +109,12 @@ void mouseWheel(MouseEvent event) {
   }
 
   size = maxSize * zoomLev;
-  strokeWeight(zoomLev / 2.0);
+  strokeWeight(2.0 / zoomLev);
 
   zoomLev = constrain(zoomLev, 1.0, 10.0);
 }
+
+
 
 //void mouseClicked(){
 //  setupDone = false;
