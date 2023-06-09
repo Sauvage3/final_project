@@ -93,6 +93,27 @@ public class rainbowGame extends gameOfLife {
     return neighbors;
   }
 
+public void displayText(){
+  int living = 0;
+  int dead = 0;
+  
+    for (int r = 0; r < grid.length; r++) {
+    for (int c = 0; c < grid[0].length; c++) {
+      if (grid[r][c] != color(0, 0, 0)){
+        living++;
+      } else {
+        dead++;
+      }
+    }
+  }
+  
+  fill(255);
+  textAlign(CENTER);
+  textSize(20);
+  text("Alive Cells: " + living, width / 2, height - 30);
+  text("Dead Cells: " + dead, width / 2, height - 10);
+}
+
   @Override
 public void initializeGridForGame(float desiredSize) {
     size = desiredSize;
